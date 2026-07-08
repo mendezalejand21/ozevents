@@ -1,10 +1,8 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { FloatingActions } from "@/components/FloatingActions";
 import { MobileActionBar } from "@/components/MobileActionBar";
 import { QuoteBanner } from "@/components/QuoteBanner";
-import { StickyQuoteButton } from "@/components/StickyQuoteButton";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { PageTransition } from "@/components/motion/PageTransition";
 
@@ -17,8 +15,6 @@ export function SiteShell({ children }: { children: ReactNode }) {
       </main>
       <QuoteBanner />
       <SiteFooter />
-      <FloatingActions />
-      <StickyQuoteButton />
       <MobileActionBar />
     </>
   );

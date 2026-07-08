@@ -100,20 +100,12 @@ export default function Home() {
                   <p className="whitespace-pre-line text-sm leading-6 text-white/70">
                     {brand.address}
                   </p>
-                  <div className="flex flex-wrap gap-2">
-                    <a
-                      href={links.mailto}
-                      className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold text-white/80 hover:bg-white/10"
-                    >
-                      {brand.email}
-                    </a>
-                    <a
-                      href={links.tel}
-                      className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold text-white/80 hover:bg-white/10"
-                    >
+                  <p className="text-sm font-semibold text-white/80">
+                    Call / WhatsApp:{" "}
+                    <a className="text-white hover:text-white/90" href={links.tel}>
                       {brand.phone}
                     </a>
-                  </div>
+                  </p>
                 </div>
               </div>
             </Reveal>

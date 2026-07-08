@@ -1,13 +1,12 @@
 "use client";
 
-import Link from "next/link";
-import { MessageCircle, Phone, Sparkles } from "lucide-react";
+import { MessageCircle, Phone } from "lucide-react";
 import { links } from "@/lib/brand";
 
 export function MobileActionBar() {
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-oz-bg/92 backdrop-blur md:hidden">
-      <div className="mx-auto grid max-w-6xl grid-cols-3 gap-2 px-3 py-3">
+      <div className="mx-auto grid max-w-6xl grid-cols-2 gap-2 px-3 py-3">
         <a
           href={links.tel}
           className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-3 text-xs font-semibold text-white/90 hover:bg-white/10"
@@ -22,13 +21,6 @@ export function MobileActionBar() {
           <MessageCircle className="h-4 w-4" aria-hidden="true" />
           WhatsApp
         </a>
-        <Link
-          href="/contact"
-          className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-3 text-xs font-semibold text-white/90 hover:bg-white/10"
-        >
-          <Sparkles className="h-4 w-4 text-oz-gold" aria-hidden="true" />
-          Get Quote
-        </Link>
       </div>
     </div>
   );

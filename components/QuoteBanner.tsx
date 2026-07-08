@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { Phone } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
 import { brand, links } from "@/lib/brand";
@@ -43,12 +42,6 @@ export function QuoteBanner() {
                   <Phone className="h-4 w-4 text-oz-gold" aria-hidden="true" />
                   Call {brand.phone}
                 </a>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white/90 transition hover:-translate-y-0.5 hover:bg-white/10"
-                >
-                  Get Quote Form
-                </Link>
               </div>
             </div>
           </div>

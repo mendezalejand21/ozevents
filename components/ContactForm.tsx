@@ -11,7 +11,7 @@ type FormState = {
   eventDate: string;
   eventLocation: string;
   guests: string;
-  servicesRequired: string[];
+  serviceRequired: string;
   notes: string;
 };
 
@@ -43,15 +43,12 @@ export function ContactForm() {
     eventDate: "",
     eventLocation: "",
     guests: "",
-    servicesRequired: ["Event Security"],
+    serviceRequired: "Event Security",
     notes: "",
   });
 
   const whatsappUrl = useMemo(() => {
-    const selectedServices =
-      state.servicesRequired.length > 0
-        ? state.servicesRequired
-        : ["[Services required]"];
+    const selectedService = state.serviceRequired || "[Service required]";
 
     const text = [
       `Hello ${brand.name},`,
@@ -67,8 +64,7 @@ export function ContactForm() {
       `Event Location: ${state.eventLocation || "[Event location]"}`,
       `Estimated Guests: ${state.guests || "[Number of guests]"}`,
       ``,
-      `Services Required:`,
-      ...selectedServices.map((s) => `- ${s}`),
+      `Service Required: ${selectedService}`,
       ``,
       `Additional Notes: ${state.notes || "[Additional notes]"}`,
     ].join("\n");
@@ -213,51 +209,20 @@ export function ContactForm() {
       <div className="rounded-2xl border border-white/10 bg-black/20 p-5">
         <p className="text-sm font-semibold text-white/85">Services Required</p>
 
-        <details className="mt-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3">
-          <summary className="cursor-pointer list-none text-sm font-semibold text-white/90">
-            Select services
-          </summary>
-          <div className="mt-4 grid gap-2 sm:grid-cols-2">
-            {services.map((s) => {
-              const id = `svc-${s.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
-              const checked = state.servicesRequired.includes(s);
-              return (
-                <label
-                  key={s}
-                  htmlFor={id}
-                  className="flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-white/80 hover:bg-white/10"
-                >
-                  <input
-                    id={id}
-                    type="checkbox"
-                    className="mt-1 h-4 w-4 accent-[#d4af37]"
-                    checked={checked}
-                    onChange={(e) => {
-                      setState((prev) => {
-                        const next = new Set(prev.servicesRequired);
-                        if (e.target.checked) next.add(s);
-                        else next.delete(s);
-                        return { ...prev, servicesRequired: Array.from(next) };
-                      });
-                    }}
-                  />
-                  <span className="font-semibold text-white/90">{s}</span>
-                </label>
-              );
-            })}
-          </div>
-        </details>
-
-        <div className="mt-4 flex flex-wrap gap-2">
-          {state.servicesRequired.map((s) => (
-            <span
-              key={s}
-              className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold text-white/80"
-            >
+        <select
+          aria-label="Service required"
+          value={state.serviceRequired}
+          onChange={(e) =>
+            setState((s) => ({ ...s, serviceRequired: e.target.value }))
+          }
+          className="mt-3 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white/90 focus:outline-none focus:ring-2 focus:ring-oz-gold/50"
+        >
+          {services.map((s) => (
+            <option key={s} value={s} className="bg-oz-bg text-white">
               {s}
-            </span>
+            </option>
           ))}
-        </div>
+        </select>
       </div>
 
       <div className="flex flex-col gap-3 sm:flex-row">

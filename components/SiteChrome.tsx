@@ -127,17 +127,14 @@ export function SiteHeader() {
 export function SiteFooter() {
   return (
     <footer className="border-t border-white/10 bg-oz-bg">
-      <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-4">
-        <div>
-          <Logo className="mb-4" />
-          <p className="max-w-sm text-sm leading-7 text-white/70">
-            Premium event security and staffing in Enugu—built for calm, control,
-            and confident delivery.
-          </p>
-          <p className="mt-4 text-xs text-white/55">RC {brand.rc}</p>
+      <div className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6">
+        <div className="mb-10">
+          <Logo />
+          <p className="mt-3 text-xs text-white/55">RC {brand.rc}</p>
         </div>
 
-        <div>
+        <div className="grid gap-10 lg:grid-cols-3">
+          <div>
           <h2 className="text-sm font-semibold tracking-wide text-white/90">
             Services
           </h2>
@@ -155,9 +152,9 @@ export function SiteFooter() {
               </li>
             ))}
           </ul>
-        </div>
+          </div>
 
-        <div>
+          <div>
           <h2 className="text-sm font-semibold tracking-wide text-white/90">
             Contact
           </h2>
@@ -171,9 +168,9 @@ export function SiteFooter() {
             <p className="whitespace-pre-line text-white/70">{brand.address}</p>
             <p className="text-white/60">Business Hours: Mon–Sat, 8:00am–8:00pm</p>
           </div>
-        </div>
+          </div>
 
-        <div>
+          <div>
           <h2 className="text-sm font-semibold tracking-wide text-white/90">
             Quick Links
           </h2>
@@ -192,9 +189,8 @@ export function SiteFooter() {
           <h2 className="mt-6 text-sm font-semibold tracking-wide text-white/90">
             Social
           </h2>
-          <p className="mt-3 text-sm text-white/70">
-            Instagram · Facebook · X (links coming soon)
-          </p>
+          <p className="mt-3 text-sm text-white/70">Instagram · Facebook · X</p>
+          </div>
         </div>
       </div>
 

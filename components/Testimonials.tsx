@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo, useRef } from "react";
 import { Star } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
 
@@ -31,43 +32,59 @@ const testimonials = [
 ] as const;
 
 export function Testimonials() {
+  const scrollerRef = useRef<HTMLDivElement | null>(null);
+  const items = useMemo(() => testimonials, []);
+
   return (
     <section className="py-12 sm:py-16">
       <Reveal>
         <h2 className="text-balance text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-          Trusted by event organizers across Enugu
+          Testimonials
         </h2>
         <p className="mt-3 max-w-3xl text-pretty text-base leading-7 text-white/72">
-          Real feedback from clients who needed visible professionalism, calm
-          control, and fast coordination.
+          Feedback from clients who needed calm control, professionalism, and
+          fast coordination.
         </p>
       </Reveal>
 
-      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {testimonials.map((t, idx) => (
-          <Reveal key={t.name} delay={0.03 * idx}>
-            <figure className="group flex h-full flex-col rounded-2xl border border-white/10 bg-oz-surface p-6 transition hover:-translate-y-1 hover:border-white/18 hover:bg-white/[0.06]">
-              <div className="flex items-center gap-1 text-oz-gold">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star
-                    key={i}
-                    className="h-4 w-4 fill-current"
-                    aria-hidden="true"
-                  />
-                ))}
-              </div>
-              <blockquote className="mt-4 text-sm leading-7 text-white/72">
-                “{t.quote}”
-              </blockquote>
-              <figcaption className="mt-5">
-                <p className="text-sm font-semibold text-white/90">{t.name}</p>
-                <p className="mt-1 text-xs font-semibold tracking-wide text-white/60">
-                  {t.event}
-                </p>
-              </figcaption>
-            </figure>
-          </Reveal>
-        ))}
+      <div className="mt-8">
+        <div
+          ref={scrollerRef}
+          className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          aria-label="Client testimonials slider"
+        >
+          {items.map((t, idx) => (
+            <div
+              key={t.name}
+              className="w-full flex-none snap-start sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.666rem)]"
+            >
+              <Reveal delay={0.02 * idx}>
+                <figure className="group flex h-full flex-col rounded-2xl border border-white/10 bg-oz-surface p-6 transition hover:-translate-y-1 hover:border-white/18 hover:bg-white/[0.06]">
+                  <div className="flex items-center gap-1 text-oz-gold">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star
+                        key={i}
+                        className="h-4 w-4 fill-current"
+                        aria-hidden="true"
+                      />
+                    ))}
+                  </div>
+                  <blockquote className="mt-4 text-sm leading-7 text-white/72">
+                    “{t.quote}”
+                  </blockquote>
+                  <figcaption className="mt-5">
+                    <p className="text-sm font-semibold text-white/90">
+                      {t.name}
+                    </p>
+                    <p className="mt-1 text-xs font-semibold tracking-wide text-white/60">
+                      {t.event}
+                    </p>
+                  </figcaption>
+                </figure>
+              </Reveal>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

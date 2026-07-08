@@ -11,31 +11,18 @@ export function Logo({
   return (
     <Link
       href="/"
-      className={`inline-flex items-center gap-3 ${className ?? ""}`}
+      className={`inline-flex items-center ${className ?? ""}`}
       aria-label="OZ Event Services"
     >
       <Image
-        src="/icon.png"
+        src="/logo.png"
         alt="OZ Event Services"
-        width={40}
-        height={40}
-        sizes="40px"
-        className="h-10 w-10 rounded-md ring-1 ring-white/10"
+        width={520}
+        height={140}
+        sizes="(min-width: 640px) 240px, 180px"
+        className="h-9 w-auto sm:h-10"
         priority={priority}
       />
-
-      {/* Wordmark: use real logo where there is space */}
-      <div className="hidden sm:block">
-        <Image
-          src="/logo.png"
-          alt="OZ Event Services"
-          width={420}
-          height={120}
-          sizes="(min-width: 640px) 240px, 0px"
-          className="h-9 w-auto"
-          priority={priority}
-        />
-      </div>
     </Link>
   );
 }
